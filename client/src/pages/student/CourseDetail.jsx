@@ -42,7 +42,7 @@ const CourseDetail = () => {
           <h1 className="font-bold text-2xl md:text-3xl">
             {course?.courseTitle}
           </h1>
-          <p className="text-base md:text-lg">Course Sub-title</p>
+          <p className="text-base md:text-lg">{course.subTitle}</p>
           <p>
             Created By{" "}
             <span className="text-[#C0C4FC] underline italic">
@@ -91,7 +91,7 @@ const CourseDetail = () => {
                   controls={true}
                 />
               </div>
-              <h1>{course.lectureTitle}</h1>
+              <h1>{lecture.lectureTitle}</h1>
               <Separator className="my-2" />
               <h1 className="text-lg md:text-xl font-semibold">{course.coursePrice}</h1>
             </CardContent>
