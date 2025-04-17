@@ -36,8 +36,8 @@ const Profile = () => {
     },
   ] = useUpdateUserMutation();
 
-  const user = data && data.user;
   
+  const user = data && data.user;
   // console.log(data);
 
   const onChangeHandler = (e) => {
