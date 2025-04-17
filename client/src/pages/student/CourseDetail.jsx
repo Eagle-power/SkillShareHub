@@ -74,7 +74,7 @@ const CourseDetail = () => {
                   <span>
                     {true ? <PlayCircle size={14} /> : <Lock size={14} />}
                   </span>
-                  <p>{lecture.lectureTitle}</p>
+                  <p>{course.lectures.lectureTitle}</p>
                 </div>
               ))}
             </CardContent>
@@ -91,7 +91,7 @@ const CourseDetail = () => {
                   controls={true}
                 />
               </div>
-              <h1>{lecture.lectureTitle}</h1>
+              <h1>{course.lectures.lectureTitle}</h1>
               <Separator className="my-2" />
               <h1 className="text-lg md:text-xl font-semibold">{course.coursePrice}</h1>
             </CardContent>
