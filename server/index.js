@@ -26,7 +26,7 @@ app.use(cookieParser());
 const _dirname = path.resolve();
 
 app.use(cors({
-    origin:"https://skillsharehub.onrender.com/",
+    origin:"https://skillsharehub.onrender.com",
     credentials:true
 }));
  
