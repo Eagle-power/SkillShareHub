@@ -74,7 +74,7 @@ const CourseDetail = () => {
                   <span>
                     {true ? <PlayCircle size={14} /> : <Lock size={14} />}
                   </span>
-                  <p>{course.lectures.lectureTitle}</p>
+                  <p>{lecture.lectureTitle}</p>
                 </div>
               ))}
             </CardContent>
