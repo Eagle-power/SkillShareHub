@@ -36,6 +36,8 @@ const Profile = () => {
     },
   ] = useUpdateUserMutation();
 
+  const user = data && data.user;
+  
   // console.log(data);
 
   const onChangeHandler = (e) => {
@@ -49,10 +51,15 @@ const Profile = () => {
     formData.append("profilePhoto", profilePhoto);
     await updateUser(formData);
   };
-
   useEffect(() => {
     refetch();
   }, []);
+
+  useEffect(() => {
+    if (user?.name) {
+      setName(user.name);
+    }
+  }, [user]);
 
   useEffect(() => {
     if (isSuccess) {
@@ -66,7 +73,6 @@ const Profile = () => {
 
   if (isLoading) return <h1>Profile Loading...</h1>;
 
-  const user = data && data.user;
 
   // console.log(user);
   
