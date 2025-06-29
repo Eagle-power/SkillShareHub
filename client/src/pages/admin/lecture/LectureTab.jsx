@@ -44,36 +44,43 @@ const LectureTab = () => {
     useEditLectureMutation();
     const [removeLecture,{data:removeData, isLoading:removeLoading, isSuccess:removeSuccess}] = useRemoveLectureMutation();
 
-  const fileChangeHandler = async (e) => {
+  const fileChangeHandler = async (e, _, res) => {
     const file = e.target.files[0];
     if (file) {
       const formData = new FormData();
       formData.append("file", file);
+
+      setBtnDisable(true); // Disable Update Lecture button
+      toast.info("Video is uploading..."); // Show upload progress message
       setMediaProgress(true);
+
       try {
         const res = await axios.post(`${MEDIA_API}/upload-video`, formData, {
           onUploadProgress: ({ loaded, total }) => {
-            setUploadProgress(Math.round((loaded * 100) / total));
+            setUploadProgress(Math.round((loaded / total) * 100));
           },
         });
 
-        if (res.data.success) {
-          console.log(res);
+        if (res.status === 200 && res.data.success) {
+          console.log(res)
           setUploadVideoInfo({
             videoUrl: res.data.data.url,
             publicId: res.data.data.public_id,
           });
-          setBtnDisable(false);
+          setBtnDisable(false); // Enable Update Lecture button
           toast.success(res.data.message);
+        } else {
+          toast.error("Failed to upload Video");
         }
       } catch (error) {
         console.log(error);
-        toast.error("video upload failed");
+        toast.error("Failed to upload Video");
       } finally {
         setMediaProgress(false);
       }
     }
   };
+
 
   const editLectureHandler = async () => {
     console.log({ lectureTitle, uploadVideInfo, isFree, courseId, lectureId });
